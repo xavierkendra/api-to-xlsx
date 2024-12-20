@@ -43,15 +43,17 @@ async function generateSpreadsheet(apiUrl, token, tags) {
         const workbook = xlsx.utils.book_new();
         xlsx.utils.book_append_sheet(workbook, worksheet, 'Dados');
 
-        // Obtendo o caminho da pasta de Documentos do usuário
-        const documentsPath = path.join(require('os').homedir(), 'Documents');
+        // Certificando-se de que o diretório existe
+        if (!fs.existsSync(outputDir)) {
+            fs.mkdirSync(outputDir, { recursive: true }); // Cria o diretório se não existir
+        }
 
         // Incluindo a data atual no nome do arquivo
         const currentDate = formatDate(new Date());
         const fileName = `dados_${currentDate}.xlsx`;
-        const filePath = path.join(documentsPath, fileName); // Caminho completo do arquivo
+        const filePath = path.join(outputDir, fileName); // Caminho completo do arquivo
 
-        // Salvando a planilha no formato xlsx na pasta de Documentos
+        // Salvando a planilha no formato xlsx no diretório
         xlsx.writeFile(workbook, filePath);
         console.log(`Planilha gerada com sucesso: ${filePath}`);
     } catch (error) {
@@ -62,13 +64,14 @@ async function generateSpreadsheet(apiUrl, token, tags) {
 // Configurações iniciais
 const apiUrl = process.argv[2]; // URL da API passada como argumento
 const token = process.argv[3]; // Token passado como argumento
-const tags = process.argv.slice(4); // Tags passadas como argumentos
+const outputDir = process.argv[4]; // Diretório de saída passado como argumento
+const tags = process.argv.slice(5); // Tags passadas como argumentos
 
-// Verifica se a URL da API, o token e as tags foram passadas
-if (!apiUrl || !token || tags.length === 0) {
-    console.log("Uso: node index.js <url da api> <token> <tag1> <tag2> ... <tagN>");
+// Verifica se a URL da API, o token, o diretório e as tags foram passadas
+if (!apiUrl || !token || !outputDir || tags.length === 0) {
+    console.log("Uso: node index.js <url da api> <token> <diretorio de saida> <tag1> <tag2> ... <tagN>");
     process.exit(1);
 }
 
 // Executando a função
-generateSpreadsheet(apiUrl, token, tags);
+generateSpreadsheet(apiUrl, token, tags, outputDir);

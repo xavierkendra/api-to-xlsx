@@ -27,10 +27,10 @@ Antes de executar o projeto, você precisará ter o Node.js instalado em sua má
 
 ## Uso
 
-1. Para usar a aplicação, você deve executar o script index.js passando a URL da API, o token de autenticação e as tags que deseja incluir na planilha.
+1. Para usar a aplicação, você deve executar o script index.js passando a URL da API, o token de autenticação, o diretório e as tags que deseja incluir na planilha.
    ```bash
-   node index.js <url da api> <token> <tag1> <tag2> ... <tagN>
+   node index.js <url da api> <token> <diretéorio> <tag1> <tag2> ... <tagN>
 
 ## Estrutura do Arquivo Gerado
 
-O arquivo gerado será salvo na pasta de Documentos do usuário com o nome no formato dados_YYYY-MM-DD.xlsx, onde YYYY-MM-DD representa a data em que o arquivo foi gerado.
+O arquivo gerado será salvo no diretório infornado pelo usuário com o nome no formato dados_YYYY-MM-DD.xlsx, onde YYYY-MM-DD representa a data em que o arquivo foi gerado.
