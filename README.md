@@ -29,7 +29,7 @@ Antes de executar o projeto, você precisará ter o Node.js instalado em sua má
 
 1. Para usar a aplicação, você deve executar o script index.js passando a URL da API, o token de autenticação, o diretório e as tags que deseja incluir na planilha.
    ```bash
-   node index.js <url da api> <token> <diretéorio> <tag1> <tag2> ... <tagN>
+   node index.js <url da api> <token> <diretório> <tag1> <tag2> ... <tagN>
 
 ## Estrutura do Arquivo Gerado
 
