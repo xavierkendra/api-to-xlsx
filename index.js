@@ -3,14 +3,6 @@ const xlsx = require('xlsx');
 const fs = require('fs');
 const path = require('path');
 
-// Função para formatar a data
-function formatDate(date) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // meses começam em 0
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`; // Formato YYYY-MM-DD
-}
-
 // Função para gerar a planilha
 async function generateSpreadsheet(apiUrl, token, tags) {
     try {
@@ -49,8 +41,7 @@ async function generateSpreadsheet(apiUrl, token, tags) {
         }
 
         // Incluindo a data atual no nome do arquivo
-        const currentDate = formatDate(new Date());
-        const fileName = `dados_${currentDate}.xlsx`;
+        const fileName = `dados.xlsx`;
         const filePath = path.join(outputDir, fileName); // Caminho completo do arquivo
 
         // Salvando a planilha no formato xlsx no diretório
